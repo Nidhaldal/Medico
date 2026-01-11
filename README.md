@@ -33,6 +33,23 @@ Medico/
 - medico backend/
 - Medico Project/
 
+## 📸 Screenshots
+
+### Appointment Screen
+![Appointment Screen](assets/screenshots/appointmentscreen.png)
+
+### AI Analysis Screen
+![AI Analysis](assets/screenshots/appoiscreen.png)
+
+### Check Screen
+![Check Screen](assets/screenshots/check.png)
+
+### Community Screen
+![Community Screen](assets/screenshots/community.png)
+
+### Video Call Screen
+![Video Call Screen](assets/screenshots/videocall.png)
+
 ## ▶️ Getting Started
 
 Backend:
