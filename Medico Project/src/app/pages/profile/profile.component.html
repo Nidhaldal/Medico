@@ -1,0 +1,60 @@
+<div class="register-container">
+
+  <!-- 👁 View Mode -->
+  <div *ngIf="!editMode" class="profile-view">
+    <img [src]="previewUrl" *ngIf="previewUrl" alt="Preview" class="profile-preview" />
+    <h2>{{ profileForm.get('first_name')?.value }} {{ profileForm.get('last_name')?.value }}</h2>
+    <p><strong>Email:</strong> {{ profileForm.get('email')?.value }}</p>
+    <p><strong>Role:</strong> {{ profileForm.get('role')?.value }}</p>
+    <p *ngIf="profileForm.get('phone')?.value"><strong>Phone:</strong> {{ profileForm.get('phone')?.value }}</p>
+    <p><strong>Country:</strong> {{ selectedCountryObj?.name }}</p>
+    <p *ngIf="profileForm.get('city')?.value"><strong>City:</strong> {{ profileForm.get('city')?.value }}</p>
+
+    <button (click)="editMode = true">Edit Profile</button>
+  </div>
+
+  <!-- ✏️ Edit Mode -->
+  <form *ngIf="editMode" [formGroup]="profileForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data" novalidate>
+    <img [src]="previewUrl" *ngIf="previewUrl" alt="Preview" class="profile-preview" />
+
+    <input formControlName="first_name" placeholder="First Name" />
+    <div class="error" *ngIf="profileForm.get('first_name')?.invalid && profileForm.get('first_name')?.touched">
+      First name is required.
+    </div>
+
+    <input formControlName="last_name" placeholder="Last Name" />
+    <div class="error" *ngIf="profileForm.get('last_name')?.invalid && profileForm.get('last_name')?.touched">
+      Last name is required.
+    </div>
+
+    <input formControlName="email" placeholder="Email" disabled />
+
+<label for="role">Role</label>
+<select id="role" formControlName="role">
+  <option value="" disabled>Select Role</option>
+  <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+</select>
+
+    <label for="country">Country</label>
+    <select id="country" formControlName="country">
+      <option value="" disabled>Select Country</option>
+      <option *ngFor="let country of countries" [value]="country.code">
+        {{ country.name }}
+      </option>
+    </select>
+
+    <div *ngIf="availableCities.length > 0 && selectedCountryObj?.code === 'TN'">
+      <label for="city">City</label>
+      <select id="city" formControlName="city">
+        <option value="" disabled>Select City</option>
+        <option *ngFor="let city of availableCities" [value]="city">{{ city }}</option>
+      </select>
+    </div>
+
+    <input formControlName="phone" placeholder="Phone Number" />
+    <input type="file" (change)="onFileChange($event)" />
+
+    <button type="submit" [disabled]="profileForm.invalid">Save</button>
+    <button type="button" (click)="editMode = false">Cancel</button>
+  </form>
+</div>

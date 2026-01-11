@@ -1,0 +1,74 @@
+<div class="row justify-content-center">
+  <div class="col-xl-6 col-lg-8 col-md-10 col-sm-12">
+
+    <!-- Camera / Prosthesis Check Card -->
+    <nb-card>
+      <nb-card-header>Check Your Prosthesis</nb-card-header>
+      <nb-card-body>
+
+        <!-- Video / Image display -->
+        <div style="position: relative; width: 100%; height: 240px; background: #f0f0f0; display:flex; align-items:center; justify-content:center;">
+          <!-- Annotated image from backend -->
+          <img *ngIf="annotatedImage" [src]="annotatedImage"
+               style="max-width:100%; max-height:100%; object-fit:contain;" />
+
+          <!-- Preview uploaded/captured image -->
+          <img *ngIf="!annotatedImage && uploadedImageUrl" [src]="uploadedImageUrl"
+               style="max-width:100%; max-height:100%; object-fit:contain;" />
+
+          <!-- Live camera feed -->
+          <video *ngIf="!annotatedImage && !uploadedImageUrl" #video width="100%" height="240" autoplay></video>
+
+          <!-- Canvas fallback -->
+          <canvas #canvas width="320" height="240"
+                  [style.display]="'none'"></canvas>
+        </div>
+
+        <!-- Capture button (disabled if no camera) -->
+        <button nbButton status="primary" fullWidth style="margin-top: 1rem;"
+                (click)="capture()" [disabled]="!cameraAvailable">
+          Capture Image
+        </button>
+
+        <!-- Upload option -->
+        <input type="file" accept="image/*"
+               style="margin-top: 1rem; display:block;"
+               (change)="onFileSelected($event)" />
+
+        <!-- Analyze button -->
+        <button nbButton status="success" fullWidth style="margin-top: 1rem;"
+                (click)="analyzeImage()" [disabled]="!uploadedImageFile">
+          Process / Analyze
+        </button>
+
+        <small style="display:block; margin-top: 0.5rem;">
+          Tip: Ensure good lighting and place your prosthesis clearly in view.
+        </small>
+      </nb-card-body>
+    </nb-card>
+
+    <!-- AI Result Card -->
+    <nb-card style="margin-top: 1.5rem;">
+      <nb-card-header>AI Result</nb-card-header>
+      <nb-card-body>
+        <p *ngIf="processingMessage" style="color: #f39c12;">{{ processingMessage }}</p>
+        <p *ngIf="aiResultMessage" style="font-weight: bold;">{{ aiResultMessage }}</p>
+      </nb-card-body>
+    </nb-card>
+
+    <!-- Instructions Card -->
+    <nb-card style="margin-top: 1.5rem;">
+      <nb-card-header>How to Use</nb-card-header>
+      <nb-card-body>
+        <ol>
+          <li>Stand in front of a plain background.</li>
+          <li>Make sure the prosthesis is fully visible.</li>
+          <li>Either capture an image with your camera or upload one.</li>
+          <li>Click "Process / Analyze" to run the AI model.</li>
+          <li>Wait for the result and follow suggestions if needed.</li>
+        </ol>
+      </nb-card-body>
+    </nb-card>
+
+  </div>
+</div>

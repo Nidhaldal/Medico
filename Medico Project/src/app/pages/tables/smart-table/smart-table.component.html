@@ -1,0 +1,14 @@
+<nb-card *ngIf="isAdmin">
+  <nb-card-header>Users</nb-card-header>
+  <nb-card-body *ngIf="!loading; else loadingTemplate">
+    <ng2-smart-table
+      [settings]="settings"
+      [source]="source"
+      (deleteConfirm)="onDeleteConfirm($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+
+  <ng-template #loadingTemplate>
+    <nb-spinner status="primary"></nb-spinner>
+  </ng-template>
+</nb-card>

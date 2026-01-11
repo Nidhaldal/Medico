@@ -1,0 +1,109 @@
+<nb-card class="col-md-12 col-lg-12 col-xxxl-12 futuristic-card">
+  <nb-card-body>
+    <nb-stepper orientation="horizontal" (stepChange)="onStepChange($event)">
+    
+      <!-- Step 1 -->
+      <nb-step [stepControl]="firstForm" label="Personal Info">
+        <div *ngIf="firstForm" [formGroup]="firstForm" class="step-container">
+          <input nbInput fullWidth placeholder="First Name" formControlName="first_name" />
+          <div class="error" *ngIf="firstForm.get('first_name')?.touched && firstForm.get('first_name')?.invalid">
+            First name is required.
+          </div>
+
+          <input nbInput fullWidth placeholder="Last Name" formControlName="last_name" />
+          <div class="error" *ngIf="firstForm.get('last_name')?.touched && firstForm.get('last_name')?.invalid">
+            Last name is required.
+          </div>
+
+          <button nbButton status="primary" nbStepperNext [disabled]="firstForm.invalid">Next</button>
+        </div>
+      </nb-step>
+
+   <!-- Step 2 -->
+<nb-step [stepControl]="secondForm" label="Account Info">
+  <div *ngIf="secondForm" [formGroup]="secondForm" class="step-container">
+    <input nbInput fullWidth placeholder="Username" formControlName="username" />
+    <div class="error" *ngIf="secondForm.get('username')?.touched && secondForm.get('username')?.invalid">
+      Username is required.
+    </div>
+
+    <input nbInput fullWidth placeholder="Email" formControlName="email" />
+    <div class="error" *ngIf="secondForm.get('email')?.touched && secondForm.get('email')?.invalid">
+      Valid email is required.
+    </div>
+
+    <!-- ✅ Profile Picture Upload -->
+    <label class="file-upload-label">Upload Profile Picture</label>
+    <input type="file" accept="image/*" (change)="onFileSelected($event)" class="form-control-file" />
+    <div class="error" *ngIf="fileError">{{ fileError }}</div>
+
+    <button nbButton status="info" nbStepperPrevious>Prev</button>
+    <button nbButton status="primary" nbStepperNext [disabled]="secondForm.invalid">Next</button>
+  </div>
+</nb-step>
+
+      <!-- Step 3 -->
+      <nb-step [stepControl]="thirdForm" label="Set Password">
+        <div *ngIf="thirdForm" [formGroup]="thirdForm" class="step-container">
+          <input nbInput fullWidth placeholder="Password" type="password" formControlName="password" />
+          <div class="error" *ngIf="thirdForm.get('password')?.touched && thirdForm.get('password')?.invalid">
+            Password is required.
+          </div>
+
+          <input nbInput fullWidth placeholder="Confirm Password" type="password" formControlName="password2" />
+          <div class="error" *ngIf="thirdForm.get('password2')?.touched && thirdForm.get('password2')?.invalid">
+            Confirmation is required.
+          </div>
+
+          <div class="error" *ngIf="thirdForm.errors?.passwordsMismatch && thirdForm.touched">
+            Passwords do not match.
+          </div>
+
+          <button nbButton status="info" nbStepperPrevious>Prev</button>
+          <button nbButton status="primary" nbStepperNext [disabled]="thirdForm.invalid">Next</button>
+        </div>
+      </nb-step>
+
+     <!-- Step 4 -->
+<nb-step [stepControl]="fourthForm" label="Contact Info">
+  <form *ngIf="fourthForm" [formGroup]="fourthForm" (ngSubmit)="onFourthSubmit()" class="step-container">
+
+    <!-- Country select -->
+    <nb-select fullWidth formControlName="country" placeholder="Select Country" appearance="outline">
+      <nb-option *ngFor="let country of countries" [value]="country.code">
+        <span class="fi" [ngClass]="'fi-' + country.lowerCode" aria-hidden="true" style="margin-right: 8px;"></span>
+        {{ country.name }} ({{ country.dial_code }})
+      </nb-option>
+    </nb-select>
+    <div class="error" *ngIf="fourthForm.get('country')?.touched && fourthForm.get('country')?.invalid">
+      Country is required.
+    </div>
+
+    <!-- City select -->
+    <nb-select *ngIf="availableCities.length > 0" fullWidth formControlName="city" placeholder="Select City" appearance="outline">
+      <nb-option *ngFor="let city of availableCities" [value]="city">{{ city }}</nb-option>
+    </nb-select>
+
+    <!-- Phone -->
+    <input nbInput fullWidth placeholder="Phone Number" formControlName="phone" />
+    <div class="error" *ngIf="fourthForm.get('phone')?.touched && fourthForm.get('phone')?.invalid">
+      Valid phone number required.
+    </div>
+    <!-- Role Select -->
+<nb-select fullWidth formControlName="role" placeholder="Select Role" appearance="outline">
+  <nb-option *ngFor="let role of roles" [value]="role.value">{{ role.label }}</nb-option>
+</nb-select>
+<div class="error" *ngIf="fourthForm.get('role')?.touched && fourthForm.get('role')?.invalid">
+  Role is required.
+</div>
+
+
+    <button nbButton status="info" nbStepperPrevious>Prev</button>
+    <button nbButton status="success" type="submit" [disabled]="fourthForm.invalid">Submit</button>
+  </form>
+</nb-step>
+
+
+    </nb-stepper>
+  </nb-card-body>
+</nb-card>

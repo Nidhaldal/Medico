@@ -1,0 +1,35 @@
+<nb-card size="small">
+  <nb-card-header>
+    <i class="nb-person"></i>
+    <span class="title">Patients</span>
+  </nb-card-header>
+
+  <nb-card-body>
+    <!-- Loading indicator -->
+    <div *ngIf="loading" class="loading-indicator">
+      <nb-spinner size="tiny"></nb-spinner>
+      <p>Loading patient summary...</p>
+    </div>
+
+    <!-- Patient summary -->
+    <div *ngIf="!loading && patientSummary" class="summary-container">
+      <div class="summary-numbers">
+        <h2>{{ patientSummary.totalPatients || 0 }}</h2>
+        <p>New this month: {{ patientSummary.newPatientsThisMonth || 0 }}</p>
+      </div>
+
+      <ngx-stats-bar-animation-chart
+        [linesData]="{
+          firstLine: [patientSummary.totalPatients || 0],
+          secondLine: [patientSummary.newPatientsThisMonth || 0]
+        }"
+        [labels]="['Total Patients', 'New This Month']">
+      </ngx-stats-bar-animation-chart>
+    </div>
+
+    <!-- No data fallback -->
+    <div *ngIf="!loading && !patientSummary" class="text-center text-muted">
+      <p>No patient data available.</p>
+    </div>
+  </nb-card-body>
+</nb-card>

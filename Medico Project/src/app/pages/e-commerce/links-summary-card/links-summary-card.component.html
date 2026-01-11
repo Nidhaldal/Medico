@@ -1,0 +1,69 @@
+<nb-flip-card [showToggleButton]="false" [flipped]="flipped" class="profit-card">
+
+  <!-- FRONT SIDE -->
+  <nb-card-front>
+    <nb-card size="tiny" class="card-front">
+      <div class="header">
+        <span class="title">Links Overview</span>
+      </div>
+
+      <div class="content">
+        <div class="stat">
+          <span class="label">Total Sent</span>
+          <span class="value sent">{{ totalSent }}</span>
+        </div>
+        <div class="stat">
+          <span class="label">Total Received</span>
+          <span class="value received">{{ totalReceived }}</span>
+        </div>
+      </div>
+
+      <nb-icon icon="chevron-right-outline" pack="eva" class="flip-icon" (click)="toggleView()"></nb-icon>
+    </nb-card>
+  </nb-card-front>
+
+  <!-- BACK SIDE -->
+  <nb-card-back>
+    <nb-card size="tiny" class="card-back">
+      <div class="header">
+        <span class="title">Links Details</span>
+      </div>
+
+      <div class="content">
+        <div class="stat-row">
+          <div class="stat">
+            <span class="label">Pending Sent</span>
+            <span class="value">{{ pendingSent }}</span>
+          </div>
+          <div class="stat">
+            <span class="label">Accepted Sent</span>
+            <span class="value">{{ acceptedSent }}</span>
+          </div>
+        </div>
+        <div class="stat-row">
+          <div class="stat">
+            <span class="label">Pending Received</span>
+            <span class="value">{{ pendingReceived }}</span>
+          </div>
+          <div class="stat">
+            <span class="label">Accepted Received</span>
+            <span class="value">{{ acceptedReceived }}</span>
+          </div>
+        </div>
+        <div class="stat-row">
+          <div class="stat">
+            <span class="label">New This Month (Sent)</span>
+            <span class="value">{{ newThisMonthSent }}</span>
+          </div>
+          <div class="stat">
+            <span class="label">New This Month (Received)</span>
+            <span class="value">{{ newThisMonthReceived }}</span>
+          </div>
+        </div>
+      </div>
+
+      <nb-icon icon="chevron-left-outline" pack="eva" class="flip-icon" (click)="toggleView()"></nb-icon>
+    </nb-card>
+  </nb-card-back>
+
+</nb-flip-card>

@@ -1,0 +1,53 @@
+<nb-card>
+  <nb-card-header>Reschedule Appointment</nb-card-header>
+
+  <nb-card-body>
+    <p>
+      Current date: 
+      {{ appointment?.scheduled_date ? (appointment.scheduled_date | date:'short') : 'Not set' }}
+    </p>
+
+    <label><strong>Pick new date or range:</strong></label>
+    <input nbInput placeholder="Select date or range" [nbDatepicker]="rangepicker" [value]="formatRange()">
+<nb-rangepicker 
+  #rangepicker 
+  [(range)]="range" 
+  [min]="minDate">
+</nb-rangepicker>
+
+    <!-- Scrollable Time Picker -->
+    <div class="time-picker-container mt-3 d-flex align-items-center justify-content-center gap-3">
+      
+      <!-- Hours -->
+      <div #hourContainer class="time-column" (scroll)="onHourScroll($event)">
+        <div *ngFor="let h of hours" class="time-item" 
+             [class.selected]="h === selectedHour"
+             (click)="selectHour(h)">
+          {{ h | number:'2.0' }}
+        </div>
+      </div>
+
+      <div class="separator">:</div>
+
+      <!-- Minutes -->
+      <div #minuteContainer class="time-column" (scroll)="onMinuteScroll($event)">
+        <div *ngFor="let m of minutes" class="time-item" 
+             [class.selected]="m === selectedMinute"
+             (click)="selectMinute(m)">
+          {{ m | number:'2.0' }}
+        </div>
+      </div>
+
+      <!-- Display selected time -->
+      <div class="selected-time ms-3">
+        Selected Time: {{ selectedHour | number:'2.0' }}:{{ selectedMinute | number:'2.0' }}
+      </div>
+
+    </div>
+  </nb-card-body>
+
+  <nb-card-footer class="d-flex justify-content-end gap-2">
+    <button nbButton status="basic" size="small" (click)="close()">Cancel</button>
+    <button nbButton status="success" size="small" (click)="save()">Save</button>
+  </nb-card-footer>
+</nb-card>

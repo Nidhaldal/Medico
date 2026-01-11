@@ -1,0 +1,18 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.progress-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+nb-progress-bar {
+  flex: 1;
+  font-weight: bold;
+  text-align: center;
+  height: 25px;      // taller for readability
+  font-size: 1rem;   // bigger text
+}

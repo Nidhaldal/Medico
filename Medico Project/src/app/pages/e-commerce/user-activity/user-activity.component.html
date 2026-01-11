@@ -1,0 +1,42 @@
+<nb-card size="medium">
+
+  <nb-card-header>
+    <span>Appointments Summary</span>
+    <nb-select [selected]="type" (selectedChange)="onPeriodChange($event)">
+      <nb-option *ngFor="let t of types" [value]="t">{{ t }}</nb-option>
+    </nb-select>
+  </nb-card-header>
+
+  <nb-list class="user-activity-list">
+
+    <nb-list-item>
+      <div class="summary-label">Total Appointments</div>
+      <div class="summary-value">{{ appointmentsSummary.total }}</div>
+    </nb-list-item>
+
+    <nb-list-item>
+      <div class="summary-label">Pending</div>
+      <div class="summary-value">{{ appointmentsSummary.pending }}</div>
+    </nb-list-item>
+
+    <nb-list-item>
+      <div class="summary-label">Accepted</div>
+      <div class="summary-value">{{ appointmentsSummary.accepted }}</div>
+    </nb-list-item>
+
+    <nb-list-item>
+      <div class="summary-label">Rejected</div>
+      <div class="summary-value">{{ appointmentsSummary.rejected }}</div>
+    </nb-list-item>
+
+    <nb-list-item>
+      <div class="summary-label">Growth</div>
+      <div class="delta value" [class.up]="appointmentsSummary.deltaUp" [class.down]="!appointmentsSummary.deltaUp">
+        <nb-icon [icon]="appointmentsSummary.deltaUp ? 'arrow-up' : 'arrow-down'" pack="eva"></nb-icon>
+        {{ appointmentsSummary.growth | number:'1.0-0' }}%
+      </div>
+    </nb-list-item>
+
+  </nb-list>
+
+</nb-card>

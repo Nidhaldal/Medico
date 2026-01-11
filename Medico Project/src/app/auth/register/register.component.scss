@@ -1,0 +1,189 @@
+.medico-toast {
+  background: #ffffff !important;
+  color: #2c3e50 !important;
+  border-left: 6px solid #1abc9c;
+  padding: 16px 20px;
+  border-radius: 12px !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  display: flex !important;
+  align-items: center;
+  min-width: 320px;
+  animation: fadeInDown 0.5s ease-out;
+
+  .toast-logo {
+    width: 42px;
+    height: 42px;
+    margin-right: 15px;
+  }
+
+  .toast-text {
+    h4 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 600;
+      color: #1abc9c;
+    }
+
+    p {
+      margin: 4px 0 0;
+      font-size: 14px;
+      color: #34495e;
+    }
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===============================
+   Registration Form Styling
+================================ */
+.register-container {
+  max-width: 420px;
+  margin: 40px auto;
+  background: #0a1f44;
+  padding: 35px 30px;
+  border-radius: 14px;
+  box-shadow: 0 0 25px rgba(0, 123, 255, 0.45);
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 25px;
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  input,
+  select,
+  nb-select {
+    margin-bottom: 16px;
+    padding: 12px 15px;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    background: #031a66;
+    color: #d0e7ff;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+
+    &:hover {
+      border-color: #00d4ff66;
+    }
+
+    &:focus,
+    &:active {
+      outline: none;
+      border-color: #00d4ff;
+      box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+      background: #022c9f;
+      color: #ffffff;
+    }
+
+    &::placeholder {
+      color: #8da8d9;
+    }
+  }
+
+  label {
+    color: #c4dcff;
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-size: 0.95rem;
+  }
+
+  .fi {
+    vertical-align: middle;
+  }
+
+  button {
+    padding: 14px;
+    font-weight: 700;
+    background: linear-gradient(90deg, #00bfff, #007bff);
+    border: none;
+    border-radius: 10px;
+    color: #ffffff;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    box-shadow: 0 0 12px rgba(0, 123, 255, 0.5);
+    transition: all 0.4s ease;
+    margin-top: 5px;
+
+    &:hover {
+      background: linear-gradient(90deg, #007bff, #00bfff);
+      box-shadow: 0 0 15px rgba(0, 212, 255, 0.8);
+      transform: translateY(-1px);
+    }
+
+    &:disabled {
+      background: #3a4767;
+      cursor: not-allowed;
+      box-shadow: none;
+      opacity: 0.7;
+    }
+  }
+
+  .error {
+    color: #ff4c4c;
+    font-weight: 600;
+    margin-top: -10px;
+    margin-bottom: 12px;
+    font-size: 0.88rem;
+    line-height: 1.2;
+    padding-left: 4px;
+    transition: opacity 0.3s ease;
+  }
+
+  select:invalid {
+    color: #8da8d9;
+  }
+
+  nb-select {
+    background: #031a66;
+    border-radius: 8px;
+
+    ::ng-deep nb-option {
+      background: #031a66;
+      color: #d0e7ff;
+
+      &:hover {
+        background: #022c9f;
+      }
+    }
+  }
+
+  input[type="file"] {
+    padding: 10px;
+    background: #031a66;
+    color: #d0e7ff;
+    border: 2px dashed #007bff;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: #022c9f;
+      border-color: #00d4ff;
+    }
+  }
+  
+}

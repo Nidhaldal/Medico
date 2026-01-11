@@ -1,0 +1,31 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.2rem;
+  cursor: pointer;
+}
+
+.status-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-top: 2px;
+  background-color: #2ecc71; // green default
+
+  &.pending {
+    background-color: #f1c40f; // yellow pending
+  }
+  &.approved {
+    background-color: #2ecc71;
+  }
+  &.rejected {
+    background-color: #e74c3c;
+  }
+}
+
+:host(:hover) {
+  background-color: rgba(0,0,0,0.05);
+}

@@ -1,0 +1,115 @@
+.futuristic-card {
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #e0f7fa;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #2196f3cc;
+  padding: 1.5rem;
+
+  input.nb-input,
+  nb-select {
+    background-color: #ffffff10; /* translucent dark */
+    border-radius: 6px;
+    border: 1px solid #2196f3cc;
+    color: #e0f7fa;
+    margin: 10px 0;
+    min-height: 38px;
+    padding-left: 10px;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    font-size: 1rem;
+
+    &:focus {
+      border-color: #64b5f6;
+      background-color: #1c374d;
+      outline: none;
+    }
+  }
+
+  input.nb-input.invalid,
+  nb-select.invalid {
+    border-color: #f44336;
+    background-color: #ffebee;
+    color: #b71c1c;
+  }
+
+  nb-select {
+    width: 100%;
+    position: relative;
+
+    .select-arrow {
+      color: #2196f3cc;
+      right: 10px;
+      top: calc(50% - 8px);
+      position: absolute;
+    }
+
+    nb-option {
+      background-color: #203a43;
+      color: #e0f7fa;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+
+      &:hover,
+      &:focus {
+        background-color: #2196f3cc;
+        color: #000;
+      }
+    }
+  }
+
+  button[nbButton] {
+    margin: 10px 5px 0 0;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+
+    &:hover:not(:disabled) {
+      background-color: #1976d2;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.error {
+  color: #f44336;
+  font-size: 0.8rem;
+  margin-top: 4px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.step-container {
+  display: flex;
+  flex-direction: column;
+}
+
+input[nbInput],
+nb-select {
+  margin-bottom: 10px;
+}
+.file-upload-label {
+  margin-top: 1rem;
+  font-weight: bold;
+  display: block;
+}
+input[type='file'] {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+
+/* Flag icons styling - assumes flag-icon-css is included in your project */
+.fi {
+  width: 1.3em;
+  height: 1em;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px;
+}

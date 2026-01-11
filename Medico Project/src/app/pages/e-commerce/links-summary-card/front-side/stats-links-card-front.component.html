@@ -1,0 +1,59 @@
+<!--
+<nb-card size="small">
+  <nb-card-header>
+    <i class="nb-link"></i>
+    <span class="title">Links Overview</span>
+  </nb-card-header>
+
+  <nb-card-body *ngIf="loading" class="text-center">
+    <nb-spinner size="tiny"></nb-spinner>
+    <p>Loading links summary...</p>
+  </nb-card-body>
+
+  <nb-card-body *ngIf="!loading && linksSummary">
+    <div class="summary-grid">
+      <div class="summary-item">
+        <div class="label">Total Sent</div>
+        <div class="value text-primary">{{ linksSummary.totalLinksSent || 0 }}</div>
+      </div>
+      <div class="summary-item">
+        <div class="label">Total Received</div>
+        <div class="value text-warning">{{ linksSummary.totalLinksReceived || 0 }}</div>
+      </div>
+    </div>
+
+    <div class="chart-wrapper">
+      <ngx-stats-bar-animation-chart
+        [linesData]="{
+          firstLine: [linksSummary.totalLinksSent || 0],
+          secondLine: [linksSummary.totalLinksReceived || 0]
+        }"
+        [labels]="['Sent', 'Received']">
+      </ngx-stats-bar-animation-chart>
+    </div>
+
+    <div class="mini-chart mt-3" *ngIf="linksSummary.totalLinksSent || linksSummary.totalLinksReceived">
+      <ngx-legend-chart
+        [legendItems]="[
+          { title: 'Sent', value: linksSummary.totalLinksSent || 0, color: '#3366ff' },
+          { title: 'Received', value: linksSummary.totalLinksReceived || 0, color: '#ffaa00' }
+        ]">
+      </ngx-legend-chart>
+    </div>
+
+    <div class="month-summary text-center mt-2">
+      <h6>New this month</h6>
+      <p>
+        Sent: {{ linksSummary.newThisMonthSent || 0 }} |
+        Received: {{ linksSummary.newThisMonthReceived || 0 }}
+      </p>
+    </div>
+  </nb-card-body>
+
+  <nb-card-body *ngIf="!loading && !linksSummary" class="text-center text-muted">
+    <p>No links data available.</p>
+  </nb-card-body>
+
+  <nb-icon icon="chevron-right-outline" pack="eva" class="flip-icon" (click)="toggleView()"></nb-icon>
+</nb-card>
+-->

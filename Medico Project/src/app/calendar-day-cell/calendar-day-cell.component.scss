@@ -1,0 +1,15 @@
+.day-cell {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dot {
+  position: absolute;
+  bottom: 4px;
+  width: 6px;
+  height: 6px;
+  background-color: yellow;
+  border-radius: 50%;
+}

@@ -1,0 +1,45 @@
+@import '../../../@theme/styles/themes';
+
+.profit-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  .front-container,
+  .back-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    nb-card {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+  }
+
+  .flip-icon {
+    position: absolute;
+    top: 1rem;
+    right: 0.625rem;
+    cursor: pointer;
+    z-index: 10;
+
+    @include nb-rtl(right, auto);
+    @include nb-rtl(left, 0.625rem);
+  }
+
+  ::ng-deep {
+    .flipped {
+      .front-container {
+        visibility: hidden;
+      }
+
+      .back-container {
+        visibility: visible;
+      }
+    }
+  }
+}

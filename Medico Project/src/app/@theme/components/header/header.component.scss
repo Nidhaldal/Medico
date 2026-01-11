@@ -1,0 +1,173 @@
+@import 'bootstrap/scss/mixins/breakpoints';
+@import '@nebular/theme/styles/global/breakpoints';
+@import '../../styles/themes';
+
+@include nb-install-component() {
+  // General header styling
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+  padding: 0.5rem 1rem;
+  align-items: center;
+  position: relative;
+  z-index: 100;
+
+  // Logo & sidebar
+  .logo-container {
+    display: flex;
+    align-items: center;
+
+    .sidebar-toggle {
+      margin-right: 1rem;
+      text-decoration: none;
+      color: #555;
+
+      nb-icon {
+        font-size: 1.75rem;
+      }
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #333;
+      text-decoration: none;
+      white-space: nowrap;
+
+      span {
+        color: #007bff;
+      }
+    }
+  }
+
+  nb-select {
+    min-width: 120px;
+  }
+
+  // Actions (search, email, notifications, user)
+  nb-actions {
+    display: flex;
+    align-items: center;
+
+    .control-item {
+      margin-left: 1rem;
+      position: relative;
+    }
+
+    nb-search {
+      ::ng-deep button {
+        padding: 0 !important;
+      }
+    }
+
+    // User menu
+    .user-action {
+      nb-user {
+        cursor: pointer;
+      }
+    }
+
+    // Notification dropdown
+    .notification-wrapper {
+      cursor: pointer;
+
+      .notification-badge {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background: red;
+        color: white;
+        font-size: 10px;
+        padding: 2px 6px;
+        border-radius: 50%;
+        font-weight: bold;
+      }
+
+      .notification-dropdown {
+        position: absolute;
+        top: 40px;
+        right: 0;
+        width: 280px;
+        max-height: 400px;
+        overflow-y: auto;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        background-color: #fff;
+        z-index: 1000;
+
+        .notification-item {
+          padding: 0.5rem;
+          border-bottom: 1px solid #f1f1f1;
+          cursor: pointer;
+          transition: background 0.2s;
+
+          &:hover {
+            background: #f9f9f9;
+          }
+
+          &.unread {
+            background: #e6f7ff;
+          }
+
+          .notif-header {
+            display: flex;
+            align-items: center;
+
+            .notif-avatar {
+              width: 35px;
+              height: 35px;
+              border-radius: 50%;
+              margin-right: 0.5rem;
+            }
+
+            .notif-title {
+              display: flex;
+              flex-direction: column;
+              strong {
+                font-size: 0.9rem;
+              }
+              small {
+                font-size: 0.7rem;
+                color: #888;
+              }
+            }
+          }
+
+          .notif-message {
+            font-size: 0.85rem;
+            color: #555;
+            margin-left: 40px;
+            margin-top: 2px;
+          }
+        }
+
+        .no-notifications {
+          text-align: center;
+          padding: 1rem;
+          color: #888;
+          font-size: 0.85rem;
+        }
+      }
+    }
+  }
+
+  // Responsive adjustments
+  @include media-breakpoint-down(sm) {
+    .control-item {
+      display: none;
+    }
+
+    .user-action {
+      border: none;
+      padding: 0;
+    }
+  }
+
+  @include media-breakpoint-down(is) {
+    nb-select {
+      display: none;
+    }
+  }
+}

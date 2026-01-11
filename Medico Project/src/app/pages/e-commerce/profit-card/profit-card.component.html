@@ -1,0 +1,32 @@
+<nb-flip-card [showToggleButton]="false" [flipped]="flipped" class="profit-card">
+
+  <!-- Front Card -->
+  <nb-card-front class="front-container" *ngIf="showFront; else frontHidden">
+    <nb-card size="tiny">
+      <ngx-stats-card-front
+        [patientSummary]="patientSummary"
+        [loading]="loading">
+      </ngx-stats-card-front>
+      <nb-icon icon="chevron-right-outline" pack="eva" class="flip-icon" (click)="toggleView()"></nb-icon>
+    </nb-card>
+  </nb-card-front>
+  <ng-template #frontHidden>
+    <!-- Front card hidden -->
+  </ng-template>
+
+  <!-- Back Card -->
+  <nb-card-back class="back-container" *ngIf="showBack; else backHidden">
+    <nb-card size="tiny">
+      <ngx-stats-card-back
+        [points]="lastSixMonthsTotals"
+        [loading]="loading"
+        [userRole]="userRole">
+      </ngx-stats-card-back>
+      <nb-icon icon="chevron-left-outline" pack="eva" class="flip-icon" (click)="toggleView()"></nb-icon>
+    </nb-card>
+  </nb-card-back>
+  <ng-template #backHidden>
+    <!-- Back card hidden -->
+  </ng-template>
+
+</nb-flip-card>

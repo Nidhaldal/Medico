@@ -1,0 +1,4 @@
+<div class="day-cell-content" (click)="onClick()">
+  {{ date?.getDate() }}
+  <div *ngIf="hasPending" class="status-indicator pending"></div>
+</div>

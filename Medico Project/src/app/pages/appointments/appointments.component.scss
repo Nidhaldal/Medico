@@ -1,0 +1,184 @@
+nb-card {
+  margin: 1rem;
+}
+
+.calendar-section {
+  display: block;
+  margin-bottom: 2rem;
+}
+.appointments-list {
+  .appointment-item {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(145deg, #dcdcdc, #e8e8e8); // light grey gradient
+    border-radius: 1rem;
+    padding: 1rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    border: 1px solid rgba(0,0,0,0.1);
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+
+    div {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Patient & Doctor */
+    .patient-doctor {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #333;
+      padding: 0.4rem 0.6rem;
+      background: rgba(0,0,0,0.03);
+      border-radius: 0.6rem;
+
+      span {
+        display: flex;
+        flex-direction: column;
+
+        strong {
+          font-weight: 600;
+          font-size: 0.9rem;
+          color: #2980b9; // blue accent
+        }
+
+        .username {
+          font-size: 0.85rem;
+          color: #555;
+        }
+      }
+    }
+
+    /* Date & Status row */
+    .status-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 0.8rem;
+
+      .date, .status {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        strong {
+          min-width: 60px;
+          color: #2980b9; // blue accent
+        }
+      }
+
+      ngx-interactive-progress-bar {
+        flex: 1;
+        height: 30px;
+        border-radius: 1rem;
+
+        nb-progress-bar {
+          height: 30px;
+          font-weight: bold;
+          font-size: 0.9rem;
+          line-height: 30px;
+          text-align: center;
+          color: #fff;
+          border-radius: 1rem;
+        }
+
+        &.pending nb-progress-bar {
+          background-color: #f1c40f;
+        }
+
+        &.approved nb-progress-bar {
+          background-color: #2ecc71;
+        }
+
+        &.rejected nb-progress-bar {
+          background-color: #e74c3c;
+        }
+
+        &.reschedule_pending nb-progress-bar {
+          background-color: #3498db;
+        }
+      }
+    }
+
+    /* Reason / Explanation */
+    .reason-text {
+      white-space: pre-wrap;
+      background: linear-gradient(135deg, #f0f0f0, #dcdcdc);
+      padding: 0.8rem 1rem;
+      border-radius: 1rem;
+      font-size: 0.95rem;
+      color: #333;
+      font-family: 'Roboto Mono', monospace;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      margin-top: 0.6rem;
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: -2px; left: -2px; right: -2px; bottom: -2px;
+        border-radius: 1rem;
+        background: linear-gradient(120deg, #2980b9, #3498db, #18ffff);
+        opacity: 0.15;
+        z-index: -1;
+        filter: blur(6px);
+      }
+    }
+
+    /* Action buttons */
+    .actions {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1rem;
+
+      button {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        font-weight: 600;
+        border-radius: 0.5rem;
+        padding: 0.3rem 0.7rem;
+        transition: all 0.2s ease-in-out;
+
+        nb-icon {
+          font-size: 1.2rem;
+        }
+
+        &:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+      }
+
+      button[status="success"] {
+        background: linear-gradient(135deg, #2ecc71, #27ae60);
+        color: #fff;
+      }
+
+      button[status="danger"] {
+        background: linear-gradient(135deg, #e74c3c, #c0392b);
+        color: #fff;
+      }
+
+      button[status="info"] {
+        background: linear-gradient(135deg, #3498db, #2980b9);
+        color: #fff;
+      }
+    }
+  }
+}

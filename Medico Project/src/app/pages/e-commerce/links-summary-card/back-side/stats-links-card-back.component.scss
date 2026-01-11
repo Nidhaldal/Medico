@@ -1,0 +1,56 @@
+@import '../../../../@theme/styles/themes';
+
+@include nb-install-component() {
+  nb-card {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+  }
+
+  nb-card-body {
+    padding: 1rem;
+    overflow: visible;
+    min-height: 300px;
+
+    .loading-indicator {
+      font-size: 0.9rem;
+      color: #666;
+      text-align: center;
+    }
+
+    .info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+
+      .period {
+        text-align: center;
+
+        .caption {
+          font-size: 0.85rem;
+          color: #888;
+        }
+
+        .label {
+          font-size: 1rem;
+          font-weight: 600;
+          margin-top: 0.2rem;
+        }
+
+        &.latest .label {
+          color: #3366ff; // highlight latest month
+        }
+      }
+    }
+
+    ngx-stats-area-chart {
+      width: 100%;
+      height: 250px;
+
+      ::ng-deep .echart {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}

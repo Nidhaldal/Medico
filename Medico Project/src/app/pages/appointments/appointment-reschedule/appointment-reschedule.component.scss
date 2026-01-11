@@ -1,0 +1,46 @@
+.time-picker-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.time-column {
+  height: 200px;       // visible height
+  width: 60px;         // column width
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  scroll-snap-type: y mandatory;
+  background: #f9f9f9;
+  padding-bottom: 200px; // allow last item to scroll fully
+  -webkit-overflow-scrolling: touch; // smooth momentum scrolling on iOS
+  scroll-behavior: smooth;
+}
+
+.time-item {
+  height: 50px;         // slightly taller for easier selection
+  line-height: 50px;
+  text-align: center;
+  scroll-snap-align: start;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  font-weight: 500;
+}
+
+.time-item.selected {
+  background-color: #2ecc71;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.separator {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.selected-time {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #34495e;
+}

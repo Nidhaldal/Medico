@@ -1,0 +1,38 @@
+<div class="col-md-12 col-lg-12">
+  <nb-card class="list-card">
+    <nb-card-header>
+      Users
+    </nb-card-header>
+    <nb-card-body *ngIf="!loading; else loadingTemplate">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Phone</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{ user.first_name }} {{ user.last_name }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.role }}</td>
+            <td>{{ user.phone || '—' }}</td>
+            <td>
+              <button nbButton size="tiny" status="info">View</button>
+              <button nbButton size="tiny" status="warning">Edit</button>
+              <button nbButton size="tiny" status="danger" (click)="deleteUser(user.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </nb-card-body>
+    <ng-template #loadingTemplate>
+      <nb-spinner status="primary"></nb-spinner>
+    </ng-template>
+  </nb-card>
+</div>

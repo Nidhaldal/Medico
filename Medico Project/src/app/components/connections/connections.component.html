@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="col-xxxl-3 col-md-6" *ngFor="let conn of connections">
+    <ngx-status-card [title]="conn.to_user_username || conn.from_user_username" [type]="'primary'">
+      <i class="nb-person"></i>
+      <div class="role">{{ conn.link_type }}</div>
+      <button nbButton status="danger" size="small" (click)="removeConnection(conn.id)">Remove</button>
+    </ngx-status-card>
+  </div>
+</div>

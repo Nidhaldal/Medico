@@ -1,0 +1,245 @@
+@import '../../@theme/styles/themes';
+@import 'bootstrap/scss/mixins/breakpoints';
+@import '@nebular/theme/styles/global/breakpoints';
+
+@include nb-install-component() {
+
+  // -------------------
+  // Shared Styles
+  // -------------------
+  input[nbInput] {
+    margin-bottom: 1rem;
+  }
+
+  .card-content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    i {
+      font-size: 1.6rem;
+      color: #007bff;
+    }
+
+    .profile-pic {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #eee;
+    }
+
+    .details {
+      display: flex;
+      flex-direction: column;
+
+      .username {
+        font-weight: 600;
+        font-size: 1rem;
+        color: #222;
+        margin-bottom: 0.2rem;
+      }
+
+      .role {
+        font-size: 0.75rem;
+        color: #666;
+      }
+    }
+  }
+
+  nb-card-body {
+    padding: 1rem;
+  }
+
+  nb-card, ngx-status-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+  }
+
+  button[nbButton] {
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+  }
+
+  // -------------------
+  // Pending Connections
+  // -------------------
+  .pending-actions {
+    display: flex;
+    gap: 0.4rem;
+
+    button[nbButton] {
+      min-width: 70px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    button[status='success'] { background-color: #28a745; &:hover { background-color: darken(#28a745, 5%); } }
+    button[status='danger'] { background-color: #dc3545; &:hover { background-color: darken(#dc3545, 5%); } }
+    button[status='warning'] { background-color: #fd7e14; &:hover { background-color: darken(#fd7e14, 5%); } }
+  }
+
+  // -------------------
+  // Accepted Connections
+  // -------------------
+  .accepted-connections-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .accepted-connection {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    width: 100%;
+    flex-wrap: wrap;
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .accepted-actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-shrink: 0;
+      margin-left: auto;
+    }
+
+    button[nbButton] {
+      margin-top: 0;
+      min-width: 70px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+  }
+
+  // -------------------
+  // Dashboard Layout
+  // -------------------
+  .dashboard-container {
+    display: flex;
+    gap: 1rem;
+
+    .connections-panel {
+      flex: 1;
+      max-height: calc(100vh - 2rem);
+      overflow-y: auto;
+      order: 1;
+      padding-right: 1rem;
+    }
+
+    .community-panel {
+      width: 25%;
+      max-height: calc(100vh - 2rem);
+      overflow-y: auto;
+      order: 2;
+      padding-left: 1rem;
+    }
+  }
+
+  // -------------------
+  // Floating Chat Windows
+  // -------------------
+  .chat-floating-window {
+    position: fixed;
+    bottom: 20px;
+    /* right handled dynamically via [style.right.px] */
+    width: 350px;
+    max-height: 500px;
+    z-index: 1050;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    background: white;
+
+    nb-card {
+      margin: 0;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    nb-card-header {
+      padding: 0.5rem 1rem;
+      background: nb-theme(color-primary-500);
+      color: white;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+
+      .chat-title { font-size: 14px; }
+
+      .chat-close-btn {
+        line-height: 1;
+        padding: 0;
+        min-width: unset;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+
+        &:hover { color: nb-theme(color-danger-500); }
+      }
+    }
+
+    nb-card-body {
+      flex: 1 1 auto;
+      padding: 0;
+      overflow-y: auto;
+    }
+
+    nb-chat {
+      height: 100%;
+      width: 100%;
+
+      nb-chat-message {
+        margin: 0.25rem 0;
+      }
+
+      nb-chat-form {
+        flex-shrink: 0;
+      }
+    }
+  }
+
+  // -------------------
+  // Responsive breakpoints
+  // -------------------
+  @include media-breakpoint-down(md) {
+    .chat-floating-window { width: 300px; max-height: 400px; }
+    .community-panel { width: 30%; }
+  }
+
+  @include media-breakpoint-down(xs) {
+    .chat-floating-window { width: 250px; max-height: 350px; }
+    .community-panel { width: 35%; }
+  }
+}

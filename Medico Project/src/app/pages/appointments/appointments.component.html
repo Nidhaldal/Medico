@@ -1,0 +1,111 @@
+<nb-card>
+  <nb-card-header>
+    My Appointments
+  </nb-card-header>
+
+  <nb-card-body>
+    <!-- Calendar for selecting date -->
+    <div class="calendar-section mb-4">
+      <ngx-calendar></ngx-calendar>
+    </div>
+
+    <!-- List of appointments -->
+    <div class="appointments-list">
+      <h5 class="mb-3">Upcoming Appointments</h5>
+
+      <!-- Check if appointments exist -->
+      <div *ngIf="appointments?.length > 0; else noAppointments">
+
+        <!-- START OF LOOP -->
+        <div *ngFor="let appointment of appointments"
+             class="appointment-item p-3 mb-3 rounded shadow-sm bg-white border">
+
+          <!-- Patient & Doctor -->
+          <div>
+            <strong>Patient:</strong> {{ appointment?.patient_username || 'N/A' }} |
+            <strong>Doctor:</strong> {{ appointment?.doctor_username || 'N/A' }}
+          </div>
+          <div class="mt-2">
+  <strong>Reason & Explanation:</strong>
+  <pre class="reason-text">{{ appointment?.reason || 'No details provided' }}</pre>
+</div>
+
+
+          <!-- Date & Status -->
+          <div class="mt-2 status-row">
+            <div class="date">
+              <strong>Date:</strong>
+              {{ getLocalDate(appointment?.scheduled_date) }}
+
+            </div>
+            <div class="status">
+              <strong>Status:</strong>
+              <ngx-interactive-progress-bar 
+                [status]="appointment?.status"
+                [ngClass]="appointment?.status">
+              </ngx-interactive-progress-bar>
+            </div>
+          </div>
+
+          <!-- ACTIONS FOR PROFESSIONALS -->
+          <div class="mt-2 actions" *ngIf="isProfessionalUser() && (appointment.status === 'pending' || appointment.status === 'reschedule_pending')">
+
+            <!-- Doctor handles normal pending -->
+            <ng-container *ngIf="appointment.status === 'pending'">
+              <button nbButton status="success" size="small" (click)="acceptAppointment(appointment)">
+                <nb-icon icon="checkmark-circle-outline" pack="eva"></nb-icon>
+                Accept
+              </button>
+
+              <button nbButton status="danger" size="small" (click)="rejectAppointment(appointment)">
+                <nb-icon icon="close-circle-outline" pack="eva"></nb-icon>
+                Reject
+              </button>
+
+              <button nbButton status="info" size="small" (click)="openRescheduleDialog(appointment)">
+                <nb-icon icon="clock-outline" pack="eva"></nb-icon>
+                Reschedule
+              </button>
+            </ng-container>
+
+            <!-- Doctor confirms reschedule -->
+            <ng-container *ngIf="appointment.status === 'reschedule_pending'">
+              <button nbButton status="success" size="small" (click)="confirmReschedule(appointment, 'accept')">
+                <nb-icon icon="checkmark-circle-outline" pack="eva"></nb-icon>
+                Confirm Reschedule
+              </button>
+
+              <button nbButton status="danger" size="small" (click)="confirmReschedule(appointment, 'reject')">
+                <nb-icon icon="close-circle-outline" pack="eva"></nb-icon>
+                Reject Reschedule
+              </button>
+            </ng-container>
+
+          </div>
+
+          <!-- ACTIONS FOR PATIENTS ON RESCHEDULE_PENDING -->
+          <div class="mt-2 actions" *ngIf="!isProfessionalUser() && appointment.status === 'reschedule_pending'">
+            <button nbButton status="success" size="small" (click)="confirmReschedule(appointment, 'accept')">
+              <nb-icon icon="checkmark-circle-outline" pack="eva"></nb-icon>
+              Accept Reschedule
+            </button>
+
+            <button nbButton status="danger" size="small" (click)="confirmReschedule(appointment, 'reject')">
+              <nb-icon icon="close-circle-outline" pack="eva"></nb-icon>
+              Reject Reschedule
+            </button>
+          </div>
+
+        </div>
+        <!-- END OF LOOP -->
+
+      </div>
+
+      <!-- No appointments fallback -->
+      <ng-template #noAppointments>
+        <p class="text-muted">No appointments found.</p>
+      </ng-template>
+
+    </div>
+  </nb-card-body>
+</nb-card>

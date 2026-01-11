@@ -1,0 +1,111 @@
+.register-container {
+  max-width: 400px;
+  margin: 30px auto;
+  background: #0a1f44;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #007bff88;
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  input, select, nb-select {
+    margin-bottom: 15px;
+    padding: 12px 15px;
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    background: #031a66;
+    color: #d0e7ff;
+    font-weight: 600;
+    font-size: 1rem;
+
+    &:focus {
+      outline: none;
+      border-color: #00d4ff;
+      box-shadow: 0 0 8px #00d4ff;
+    }
+  }
+
+  // Limit width for country dropdown to match register form style
+  .country-select {
+    width: 250px;
+    min-width: 150px;
+  }
+
+  .error {
+    color: #ff4c4c;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+  }
+
+  button {
+    padding: 14px;
+    font-weight: 700;
+    background: linear-gradient(90deg, #00bfff, #007bff);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 1.1rem;
+    box-shadow: 0 0 12px #007bff88;
+    cursor: pointer;
+    transition: background 0.4s ease;
+
+    &:hover {
+      background: linear-gradient(90deg, #007bff, #00bfff);
+    }
+
+    &:disabled {
+      background: #444;
+      cursor: not-allowed;
+    }
+  }
+
+  .profile-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #e0f0ff; // lighter for more contrast
+
+    h2 {
+      margin-bottom: 12px;
+      font-size: 1.6rem;
+      color: #ffffff;
+    }
+
+    p {
+      margin: 6px 0;
+      font-size: 1rem;
+      color: #d0e7ff;
+    }
+
+    img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+      object-fit: cover;
+      box-shadow: 0 0 8px #007bff99;
+      border: 3px solid #007bff;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 24px;
+      background: linear-gradient(90deg, #007bff, #00bfff);
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      color: white;
+      transition: background 0.4s ease;
+
+      &:hover {
+        background: linear-gradient(90deg, #00bfff, #007bff);
+      }
+    }
+  }
+}

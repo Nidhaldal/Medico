@@ -1,0 +1,31 @@
+<nb-card>
+  <nb-card-header>
+    <i class="nb-bar-chart"></i>
+    <span class="title">Patient Trends</span>
+  </nb-card-header>
+
+  <nb-card-body>
+    <!-- Loading indicator -->
+    <div *ngIf="loading" class="loading-indicator">
+      Loading historical patient data...
+    </div>
+
+    <!-- Patient trends -->
+    <div *ngIf="!loading && showChart">
+      <div class="info">
+        <div *ngFor="let val of points; let i = index" class="period" [ngClass]="{'latest': i === points.length - 1}">
+          <div class="caption">Month {{ i + 1 }}</div>
+          <div class="label">{{ val }} Patients</div>
+        </div>
+      </div>
+
+      <!-- Area chart -->
+      <ngx-stats-area-chart [points]="points"></ngx-stats-area-chart>
+    </div>
+
+    <!-- Empty state -->
+    <div *ngIf="!loading && !showChart" class="text-center text-muted">
+      No historical data available.
+    </div>
+  </nb-card-body>
+</nb-card>

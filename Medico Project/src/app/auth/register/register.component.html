@@ -1,0 +1,72 @@
+<div class="register-container">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data" novalidate>
+    
+    <input formControlName="username" placeholder="Username" />
+    <div class="error" *ngIf="registerForm.get('username')?.touched && registerForm.get('username')?.invalid">
+      Username is required.
+    </div>
+    <div class="error" *ngIf="serverErrors.username">{{ serverErrors.username[0] }}</div>
+
+    <input formControlName="email" type="email" placeholder="Email" />
+    <div class="error" *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid">
+      Valid email is required.
+    </div>
+    <div class="error" *ngIf="serverErrors.email">{{ serverErrors.email[0] }}</div>
+
+    <input formControlName="first_name" placeholder="First Name" />
+    <div class="error" *ngIf="registerForm.get('first_name')?.touched && registerForm.get('first_name')?.invalid">
+      First name is required.
+    </div>
+
+    <input formControlName="last_name" placeholder="Last Name" />
+    <div class="error" *ngIf="registerForm.get('last_name')?.touched && registerForm.get('last_name')?.invalid">
+      Last name is required.
+    </div>
+
+    <input formControlName="password" type="password" placeholder="Password" />
+    <div class="error" *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.hasError('minlength')">
+      Password must be at least 8 characters.
+    </div>
+
+    <input formControlName="password2" type="password" placeholder="Confirm Password" />
+    <div class="error" *ngIf="registerForm.get('password2')?.touched && registerForm.hasError('passwordMismatch')">
+      Passwords do not match.
+    </div>
+
+    <label for="role">Select Role</label>
+    <select id="role" formControlName="role">
+      <option value="" disabled>Select Role</option>
+      <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+    </select>
+
+    <label for="country">Country</label>
+    <div *ngIf="selectedCountryObj" style="margin-bottom: 8px;">
+      <span class="fi" [ngClass]="'fi-' + selectedCountryObj.lowerCode" style="margin-right: 8px;" aria-hidden="true"></span>
+      {{ selectedCountryObj.name }}
+    </div>
+
+    <nb-select id="country" formControlName="country" placeholder="Select Country">
+      <nb-option *ngFor="let country of countries" [value]="country.code">
+        <span class="fi" [ngClass]="'fi-' + country.lowerCode" style="margin-right: 8px;" aria-hidden="true"></span>
+        {{ country.name }}
+      </nb-option>
+    </nb-select>
+
+    <div *ngIf="availableCities.length > 0">
+      <label for="city">City</label>
+      <select id="city" formControlName="city">
+        <option value="" disabled>Select City</option>
+        <option *ngFor="let city of availableCities" [value]="city">{{ city }}</option>
+      </select>
+    </div>
+
+    <input formControlName="phone" placeholder="Phone Number (with country code)" />
+    <input type="file" (change)="onFileChange($event)" />
+
+    <button type="submit" [disabled]="registerForm.invalid">Register</button>
+
+    <div class="error" *ngIf="serverErrors.non_field_errors">
+      {{ serverErrors.non_field_errors[0] }}
+    </div>
+  </form>
+</div>

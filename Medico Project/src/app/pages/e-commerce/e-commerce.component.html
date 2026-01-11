@@ -1,0 +1,59 @@
+<div class="row">
+  <!-- Bottom Row: Profit Card + Links Card + User Activity -->
+  <div class="col-xxl-9" *ngIf="isAdmin() || isDoctor() || isProthesist()">
+    <ngx-profit-card
+      [patientSummary]="patientsSummary"
+      [lastSixMonthsTotals]="patientsPerMonth"
+      [loading]="!patientsSummary"
+      [userRole]="userRole">
+    </ngx-profit-card>
+  </div>
+
+  <div class="col-xxl-3" *ngIf="isAdmin() || isDoctor() || isProthesist()">
+    <ngx-links-summary-card
+      #linksCard
+      [totalSent]="linksSummary?.totalLinksSent"
+      [totalReceived]="linksSummary?.totalLinksReceived"
+      [pendingSent]="linksSummary?.pendingSent"
+      [acceptedSent]="linksSummary?.acceptedSent"
+      [pendingReceived]="linksSummary?.pendingReceived"
+      [acceptedReceived]="linksSummary?.acceptedReceived"
+      [newThisMonthSent]="linksSummary?.newThisMonthSent"
+      [newThisMonthReceived]="linksSummary?.newThisMonthReceived"
+      [loading]="!linksSummary"
+      (click)="linksCard.toggleView()">
+    </ngx-links-summary-card>
+
+   
+  </div>
+
+  <div class="col-xxl-3" *ngIf="isAdmin() || isDoctor()">
+    <ngx-user-activity></ngx-user-activity>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xxl-12" *ngIf="isAdmin() || isDoctor() || isProthesist()">
+    <ngx-ecommerce-charts
+      [appointmentsSummary]="appointmentsSummary"
+      [linksSummary]="linksSummary"
+      [patientsSummary]="patientsSummary"
+      [nationalityMap]="nationalityMap"
+      [loading]="!dashboardData"
+      [userRole]="userRole">
+    </ngx-ecommerce-charts>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xxl-9" *ngIf="isAdmin() || isDoctor() || isProthesist()">
+    <ngx-country-orders
+      [linksSummary]="linksSummary"
+      [loading]="!dashboardData">
+    </ngx-country-orders>
+  </div>
+
+  <div class="col-xxl-3" *ngIf="isAdmin() || isDoctor() || isProthesist() || isPatient()">
+    <ngx-progress-section></ngx-progress-section>
+  </div>
+</div>

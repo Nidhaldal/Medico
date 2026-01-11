@@ -1,0 +1,54 @@
+<div class="chat-floating-window">
+  <nb-card>
+    <!-- Header -->
+    <nb-card-header class="chat-header">
+      <span class="chat-title">
+        Chat with {{ user?.username || 'User' }}
+      </span>
+      <button
+        nbButton
+        ghost
+        status="danger"
+        size="tiny"
+        class="chat-close-btn"
+        (click)="closeChat()"
+        title="Close chat"
+      >
+        ✕
+      </button>
+    </nb-card-header>
+
+    <!-- Body -->
+    <nb-card-body #chatBody class="chat-body">
+      <div class="chat-messages">
+        <div
+          *ngFor="let msg of messages"
+          class="message-container"
+          [ngClass]="{
+            'my-message': (msg.sender?.id ?? msg.sender) === currentUserId,
+            'other-message': (msg.sender?.id ?? msg.sender) !== currentUserId
+          }"
+        >
+          <div class="message-bubble">
+            <span class="message-text">{{ msg.text }}</span>
+            <span class="message-time">{{ msg.created_at | date: 'shortTime' }}</span>
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+
+    <!-- Input -->
+    <nb-card-footer>
+      <div class="chat-input-wrapper d-flex">
+        <input
+          nbInput
+          placeholder="Type a message..."
+          [(ngModel)]="messageText"
+          (keyup.enter)="sendMessage()"
+          fullWidth
+        />
+        <button nbButton status="primary" (click)="sendMessage()">Send</button>
+      </div>
+    </nb-card-footer>
+  </nb-card>
+</div>
