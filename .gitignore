@@ -1,50 +1,64 @@
 # =====================
-# ENV / SECRETS
+
+# ENVIRONMENT / SECRETS
+
 # =====================
+
 .env
 *.env
 .env.*
 *.log
 
 # =====================
+
 # PYTHON / DJANGO
+
 # =====================
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
+
+**pycache**/
+*.py[cod]
 db.sqlite3
 
-# Django media & static
-media/
-medico backend/media/
-staticfiles/
+# Django media & static files
 
-# Datasets (VERY IMPORTANT)
+media/
+staticfiles/
+medico backend/media/
+
+# =====================
+
+# DATASETS
+
+# =====================
+
 datasets/
 medico backend/datasets/
 
-# Virtual environments
-venv/
-env/
-eny/
+# =====================
+
+# VIRTUAL ENVIRONMENTS
 
 # =====================
-# NODE / ANGULAR
+
+venv/
+env/
+
 # =====================
+
+# NODE / ANGULAR
+
+# =====================
+
 node_modules/
 .angular/
 dist/
 
 # =====================
-# FRONTEND (Angular)
-# =====================
-project medico/node_modules/
-project medico/.angular/
+
+# IDE / SYSTEM
 
 # =====================
-# SYSTEM / IDE
-# =====================
+
 .vscode/
 .idea/
 .DS_Store
