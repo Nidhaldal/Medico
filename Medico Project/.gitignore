@@ -36,6 +36,12 @@ testem.log
 # e2e
 /e2e/*.js
 /e2e/*.map
+# Secrets and credentials
+.env
+.env.*
+*.pem
+*firebase*adminsdk*.json
+*service-account*.json
 
 # System Files
 .DS_Store
